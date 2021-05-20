@@ -63,7 +63,7 @@ class SpotifyApiConnector {
             [
               "query" => [
                 "limit" => $number,
-                "country" => "UK",
+                "country" => "GB",
               ],
               "headers" => [
                 "Accept" => "application/json",
