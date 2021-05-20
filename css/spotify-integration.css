@@ -1,0 +1,38 @@
+#block-spotifyartistsblock{
+    background-color: #000;
+    font-family: Circular, spotify-circular, Helvetica, Arial, sans-serif;
+    border-radius: 8px;
+}
+
+#block-spotifyartistsblock h2 {
+    color: #919496;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.4;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-shadow: none;
+}
+
+#block-spotifyartistsblock ul {
+    list-style: none;
+    padding: 0px;
+}
+
+#block-spotifyartistsblock ul li a,
+#block-spotifyartistsblock ul li a:hover,
+#block-spotifyartistsblock ul li a:active,
+#block-spotifyartistsblock ul li a:visited {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+}
+
+#block-spotifyartistsblock ul li a:hover{
+    color: #1ED760;
+    font-weight: bold;
+}

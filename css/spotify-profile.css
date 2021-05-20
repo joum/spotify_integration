@@ -1,0 +1,43 @@
+.spotify-profile-wrapper{
+    background-color: #000;
+    font-family: Circular, spotify-circular, Helvetica, Arial, sans-serif;
+    border-radius: 8px;
+    color: #FFF;
+    padding: 25px;
+}
+
+.spotify-profile-wrapper .firstinfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+}
+
+.spotify-profile-wrapper .firstinfo .profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    margin-right: 50px;
+}
+
+.spotify-profile-wrapper .firstinfo .profile-pic img {
+    min-height: 100%;
+    min-width: 100%;
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    /* IE 5-7 */
+    filter: alpha(opacity=0);
+    /* modern browsers */
+    opacity: 0;
+  }
+
+.spotify-profile-wrapper .firstinfo h1 {
+    color: #FFF;
+}
+
+.spotify-profile-wrapper .firstinfo h3 {
+    color: #919496;
+}

@@ -1,0 +1,13 @@
+<div class="spotify-profile-wrapper">
+  <div class="card">
+    <div class="firstinfo">
+      <div class="profile-pic" style="background-image: url({{ artist.images.2.url }})">
+        <img src="{{ artist.images.2.url }}" />
+      </div>
+      <div class="profileinfo">
+        <h1><strong>Artist name:</strong> {{ artist.name }}</h1>
+        <h3><strong>Genres:</strong> {{ artist.genres|join(", ") }}</h3>
+      </div>
+    </div>
+  </div>
+</div>

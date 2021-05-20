@@ -1,0 +1,5 @@
+spotify_integration.spotify_settings:
+  title: Spotify API settings
+  parent: system.admin_config_system
+  route_name: spotify_integration.spotify_settings
+  weight: 10

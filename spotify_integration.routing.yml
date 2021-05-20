@@ -1,0 +1,16 @@
+spotify_integration.artist_profile_page:
+  path: '/spotify-artist/{artist_id}'
+  arguments: ['@spotify_integration.api_connector']
+  defaults:
+    _title_callback: '\Drupal\spotify_integration\Controller\SpotifyIntegrationController::getTitle'
+    _controller: '\Drupal\spotify_integration\Controller\SpotifyIntegrationController::build'
+  requirements:
+    _role: 'authenticated'
+
+spotify_integration.spotify_settings:
+  path: '/admin/config/system/spotify-settings'
+  defaults:
+    _title: 'Spotify API settings'
+    _form: 'Drupal\spotify_integration\Form\SpotifySettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

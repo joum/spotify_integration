@@ -1,0 +1,9 @@
+# Custom module library for general purposes.
+spotify_integration_block:
+  css:
+    component:
+      css/spotify-integration.css: {}
+spotify_integration_profile:
+  css:
+    component:
+      css/spotify-profile.css: {}

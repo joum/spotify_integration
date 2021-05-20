@@ -1,0 +1,6 @@
+name: Spotify Integration
+type: module
+description: Provides a Spotify Artists Block and Spotify Artist Page.
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9
