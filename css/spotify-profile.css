@@ -12,6 +12,27 @@
     margin:auto;
 }
 
+.spotify-profile-wrapper a.btn-spotify{
+    color: #fff;
+    background-color: #1db954;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 500px;
+    padding: 11px 32px 9px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.spotify-profile-wrapper p.follower-count{
+    color: #fff;
+    margin-top: 10px;
+}
+
+.spotify-profile-wrapper p.follower-count span{
+    font-weight: bold;
+}
+
 .spotify-profile-wrapper .firstinfo {
     display: flex;
     flex-direction: row;

@@ -8,6 +8,8 @@
         <div class="profileinfo">
           <h1><strong>Artist name:</strong> {{ artist.name }}</h1>
           <h3><strong>Genres:</strong> {{ artist.genres|join(", ") }}</h3>
+          <a class="btn btn-spotify" href="{{ artist.external_urls.spotify }}" target="_blank" rel="noopener noreferrer">View on Spotify</a>
+          <p class="follower-count">Followers: <span>{{ artist.followers.total }}</span></p>
         </div>
       </div>
     </div>
