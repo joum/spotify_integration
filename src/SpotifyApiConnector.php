@@ -4,11 +4,19 @@ namespace Drupal\spotify_integration;
 
 use Drupal\Core\Config\ConfigFactory;
 use GuzzleHttp\ClientInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
  * SpotifyApiConnector service.
  */
 class SpotifyApiConnector {
+
+  /**
+   * Logger service.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $logger;
 
   /**
    * The HTTP client.
@@ -31,10 +39,13 @@ class SpotifyApiConnector {
    *   The HTTP client.
    * @param \Drupal\Core\Config\ConfigFactory $config
    *   The configuration manager.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
+   *   The Drupal logger service.
    */
-  public function __construct(ClientInterface $http_client, ConfigFactory $config) {
+  public function __construct(ClientInterface $http_client, ConfigFactory $config, LoggerChannelFactoryInterface $logger) {
     $this->httpClient = $http_client;
     $this->config = $config;
+    $this->logger = $logger;
   }
 
   /**
@@ -45,21 +56,27 @@ class SpotifyApiConnector {
 
     $token = $this->getAuthBearerToken();
 
-    $response = $client->request(
-          "GET",
-          "https://api.spotify.com/v1/browse/new-releases",
-          [
-            "query" => [
-              "limit" => $number,
-              "country" => "GB",
-            ],
-            "headers" => [
-              "Accept" => "application/json",
-              "Content-Type" => "application/json",
-              "Authorization" => "Bearer " . $token,
-            ],
-          ]
-      );
+    try {
+      $response = $client->request(
+            "GET",
+            "https://api.spotify.com/v1/browse/new-releases",
+            [
+              "query" => [
+                "limit" => $number,
+                "country" => "UK",
+              ],
+              "headers" => [
+                "Accept" => "application/json",
+                "Content-Type" => "application/json",
+                "Authorization" => "Bearer " . $token,
+              ],
+            ]
+        );
+    }
+    catch (\Exception $e) {
+      $this->logger("spotify_integration")->error($e->message);
+      return [];
+    }
 
     $response_body = json_decode($response->getBody(), TRUE);
     $albums = $response_body["albums"]["items"];
@@ -87,17 +104,24 @@ class SpotifyApiConnector {
 
     $token = $this->getAuthBearerToken();
 
-    $response = $client->request(
-          "GET",
-          "https://api.spotify.com/v1/artists/" . $artist_id,
-          [
-            "headers" => [
-              "Accept" => "application/json",
-              "Content-Type" => "application/json",
-              "Authorization" => "Bearer " . $token,
-            ],
-          ]
-      );
+    try {
+      $response = $client->request(
+              "GET",
+              "https://api.spotify.com/v1/artists/" . $artist_id,
+              [
+                "headers" => [
+                  "Accept" => "application/json",
+                  "Content-Type" => "application/json",
+                  "Authorization" => "Bearer " . $token,
+                ],
+              ]
+          );
+
+    }
+    catch (\Exception $e) {
+      $this->logger("spotify_integration")->error($e->message);
+      return [];
+    }
 
     $artist = json_decode($response->getBody(), TRUE);
 
@@ -116,17 +140,23 @@ class SpotifyApiConnector {
 
     $auth_string = base64_encode($cid . ":" . $cs);
 
-    $response = $client->request(
-          "POST", "https://accounts.spotify.com/api/token", [
-          'form_params' => [
-            "grant_type" => "client_credentials",
-          ],
-          'headers' => [
-            'Content-Type' => 'application/x-www-form-urlencoded',
-            'Authorization' => 'Basic ' . $auth_string,
-          ]
-          ]
-      );
+    try {
+      $response = $client->request(
+            "POST", "https://accounts.spotify.com/api/token", [
+            'form_params' => [
+              "grant_type" => "client_credentials",
+            ],
+            'headers' => [
+              'Content-Type' => 'application/x-www-form-urlencoded',
+              'Authorization' => 'Basic ' . $auth_string,
+            ]
+            ]
+        );
+    }
+    catch (\Exception $e) {
+      $this->logger("spotify_integration")->error($e->message);
+      return "";
+    }
 
     $response_body = json_decode($response->getBody(), TRUE);
 

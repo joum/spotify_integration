@@ -1,4 +1,4 @@
 services:
   spotify_integration.api_connector:
     class: Drupal\spotify_integration\SpotifyApiConnector
-    arguments: ['@http_client', '@config.factory']
+    arguments: ['@http_client', '@config.factory', '@logger.factory']
