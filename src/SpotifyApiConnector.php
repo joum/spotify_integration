@@ -74,7 +74,7 @@ class SpotifyApiConnector {
         );
     }
     catch (\Exception $e) {
-      $this->logger("spotify_integration")->error($e->message);
+      $this->logger->get("spotify_integration")->error($e->getMessage());
       return [];
     }
 
@@ -119,7 +119,7 @@ class SpotifyApiConnector {
 
     }
     catch (\Exception $e) {
-      $this->logger("spotify_integration")->error($e->message);
+      $this->logger->get("spotify_integration")->error($e->getMessage());
       return [];
     }
 
@@ -154,7 +154,7 @@ class SpotifyApiConnector {
         );
     }
     catch (\Exception $e) {
-      $this->logger("spotify_integration")->error($e->message);
+      $this->logger->get("spotify_integration")->error($e->getMessage());
       return "";
     }
 
