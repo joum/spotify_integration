@@ -6,6 +6,12 @@
     padding: 25px;
 }
 
+.spotify-profile-wrapper p.spotify-error{
+    color: #FFF;
+    padding: 25px;
+    margin:auto;
+}
+
 .spotify-profile-wrapper .firstinfo {
     display: flex;
     flex-direction: row;

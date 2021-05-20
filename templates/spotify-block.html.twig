@@ -32,12 +32,17 @@
 	{% endif %}
 	{{ title_suffix }}
 	{% block content %}
-		<ul>
-			{% for artist in artists %}
+		
+		{% if artists is not empty %}
+			<ul>
+				{% for artist in artists %}
 
-				<li><a href="/spotify-artist/{{ artist.id }}">{{ artist.name }}</a></li>
+					<li><a href="/spotify-artist/{{ artist.id }}">{{ artist.name }}</a></li>
 
-			{% endfor %}
-		</ul>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p class="spotify-error">Couldn't fetch Spotify data.</p>
+		{% endif %}
 	{% endblock %}
 </div>
