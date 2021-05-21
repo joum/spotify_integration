@@ -64,7 +64,7 @@ class SpotifyIntegrationController extends ControllerBase {
   public function getTitle(string $artist_id) {
     $artist = is_null($this->artistDataArray) ? $this->apiConnector->fetchArtistInfo($artist_id) : $this->artistDataArray;
 
-    return $artist['name'];
+    return empty($artist) ? $this->t("Not Found") : $artist['name'];
   }
 
 }
